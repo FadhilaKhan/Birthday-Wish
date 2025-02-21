@@ -10,6 +10,7 @@ body {
 
 .book-container {
     perspective: 1800px;
+    position: relative; /* This is necessary to position the buttons relative to the container */
 }
 
 .book {
@@ -41,17 +42,12 @@ body {
 }
 
 .flipped {
-    transform: rotateY(-180deg); /* Flip the page */
+    transform: rotateY(-190deg); /* Flip the page */
     z-index: 1; /* Bring the flipped page to the front */
 }
 
 .visible {
     z-index: 2; /* Ensure the front page stays in front */
-}
-
-
-.flipped {
-    transform: rotateY(-190deg);
 }
 
 button {
@@ -62,17 +58,20 @@ button {
     color: white;
     font-size: 18px;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 30px;
     transition: background 0.3s, transform 0.2s ease;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     font-weight: bold;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 button:hover {
     background-color: #5a3b1e;
-    transform: scale(1.05);
+    transform: scale(1.05) translateY(-50%);
 }
 
 button:disabled {
@@ -82,9 +81,19 @@ button:disabled {
 }
 
 button i {
-    margin-right: 8px;  /* Optional: Adds spacing between icon and text */
+    margin-right: 5px;  /* Optional: Adds spacing between icon and text */
 }
 
 button:focus {
     outline: none;
+}
+
+/* Position the Next button on the right */
+#next {
+    right: 350px;
+}
+
+/* Position the Previous button on the left */
+#prev {
+    left: 350px;
 }
