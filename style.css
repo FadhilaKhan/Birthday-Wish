@@ -42,9 +42,11 @@ body {
 }
 
 .flipped {
-    transform: rotateY(-190deg); /* Flip the page */
-    z-index: 1; /* Bring the flipped page to the front */
+    transform: rotateY(-180deg) scale(0.98); /* Add slight scaling */
+    transition: transform 0.7s ease-in-out; /* Smooth transition */
+    z-index: 1;
 }
+
 
 .visible {
     z-index: 2; /* Ensure the front page stays in front */
