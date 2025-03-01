@@ -4,28 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday!!!</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="body">
-        <h1>Happy Birthday Dhaathi....</h1>
-        <p>Happy Birthday, Dhaathi! 🎉🥳
+    <audio id="background-audio" loop>
+        <source src="audio/audio.mp3" type="audio/mp3">
+    </audio>
     
-            I hope you love this small gift! You are my all-time favorite person, and I love you so much. 
-            You’re always in my prayers—not because of what you do for me, but simply because I love you, 
-            always have and always will. Since I was a kid, my love for you has never changed, and it never will.
-            Thank you for everything you do for me! To make your day even more special, I wanted to do something 
-            different for your birthday. And guess what? There are more surprises waiting for you! 😍🎁✨
-            
+
+    <h1 id="typed-text"></h1>
+    <div class="container">
+        <p>
+            I hope you love this small gift! You are my all-time favorite 
+            <br> person, and I love you so much. 
+            You’re always in my prayers 
+            <br>
+            not because of what you do for me, but simply because I love
+            <br> you, always have and always will. Since I was a kid, my love 
+            <br>
+            for you has never changed, and it never will.
+            Thank you for everything you do for me! To make your day even more special, 
+            <br>
+            I wanted to do something 
+            different for your birthday. 
+            <br>And guess what? 
+            <br>
+            There are more surprises waiting for you! 😍🎁✨
+            <br>
             Wishing you all the happiness in the world! 💖
             
-        </p>
-    
+        </p>    
         <img src="images/Sharmila.jpg" alt="Sharmila" width="400" height="400">
+        
     </div>
-    <div class="body2">
+    <button id="scroll-btn">See More Surprises 🎁</button>
 
-    </div>
-    
+    <script>
+        document.getElementById("scroll-btn").addEventListener("click", function() {
+            window.location.href = "album.html"; // Redirect to album.html
+        });
 
+        document.addEventListener("DOMContentLoaded", function() {
+            const text = "Happy Birthday Dhaathi.... 🎉🥳";
+            let i = 0;
+            const speed = 100; // Typing speed in milliseconds
+
+            function typeWriter() {
+                if (i < text.length) {
+                    document.getElementById("typed-text").innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, speed);
+                }
+            }
+
+            typeWriter(); // Start the animation
+        });
+    </script>
 </body>
 </html>

@@ -1,0 +1,104 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ccc9ca;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: #d63384;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    gap: 70px; /* Adds space between the text and image */
+}
+
+p {
+    max-width: 44.5%;
+    text-align: left;
+    color: #000000;
+    font-size: 1.2em;
+    line-height: 2;
+    padding: 3px;
+    border: 4px solid #e0adc6;
+    border-radius: 15px;
+    background-color: #eee1e7; 
+    animation: bounceIn 1.5s ease-in-out;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Hover effect for p */
+p:hover {
+    transform: scale(1.05); /* Slightly enlarges on hover */
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    60% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+img {
+    height: auto;
+    border-radius: 15px;
+    border: 5px solid #d63384;
+    width: 350px;
+    animation: bounceIn 1.5s ease-in-out;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Hover effect for img */
+img:hover {
+    transform: scale(1.1) rotate(3deg); /* Enlarges slightly and tilts */
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3); /* Adds a shadow effect */
+}
+
+
+#scroll-btn {
+    background: linear-gradient(45deg, #ff007f, #ff4da6);
+    color: white;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(255, 0, 127, 0.5);
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hover Effect */
+#scroll-btn:hover {
+    background: linear-gradient(45deg, #ff4da6, #ff007f);
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(255, 0, 127, 0.7);
+}
+
+/* Animation: Glowing Effect */
+@keyframes glow {
+    0% { box-shadow: 0 0 5px rgba(255, 0, 127, 0.5); }
+    50% { box-shadow: 0 0 20px rgba(255, 0, 127, 0.8); }
+    100% { box-shadow: 0 0 5px rgba(255, 0, 127, 0.5); }
+}
+
+#scroll-btn {
+    animation: glow 1.5s infinite alternate;
+}
