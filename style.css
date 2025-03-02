@@ -1,181 +1,237 @@
-/* General Page Styling */
-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-color: #f0e6dc;
-    font-family: Arial, sans-serif;
-    overflow: hidden;
-}
-
-/* Flipbook Container */
-.book-container {
-    perspective: 1800px;
-    position: relative;
-    animation: bounceBook 1.5s infinite alternate ease-in-out;
-}
-
-/* Flipbook */
-.book {
-    width: 400px;
-    height: 470px;
-    position: relative;
-    transform-style: preserve-3d;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-/* Individual Pages */
-.page {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    background-color: white;
-    border-radius: 5px;
-    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transform-origin: left;
-    transition: transform 1s ease-in-out;
-}
-
-/* Page Images */
-.page img {
-    width: 90%;
-    height: 90%;
-    border-radius: 5px;
-}
-
-/* Flip Animation */
-.flipped {
-    transform: rotateY(-180deg) scale(0.98);
-    transition: transform 0.7s ease-in-out;
-    z-index: 1;
-}
-
-.visible {
-    z-index: 2;
-}
-
-/* Slide-in Effect for New Page */
-@keyframes slideIn {
-    from {
-        transform: translateX(50px);
-        opacity: 0;
+    /* General Page Styling */
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-color: #f0e6dc;
+        font-family: Arial, sans-serif;
+        overflow: hidden;
     }
-    to {
-        transform: translateX(0);
-        opacity: 1;
+
+    /* Flipbook Container */
+    .book-container {
+        perspective: 1800px;
+        position: relative;
+        animation: bounceBook 1.5s infinite alternate ease-in-out;
     }
-}
 
-.slide-in {
-    animation: slideIn 0.4s ease-out;
-}
-
-/* Slide-out Effect */
-@keyframes slideOut {
-    from {
-        transform: translateX(0);
-        opacity: 1;
+    /* Flipbook */
+    .book {
+        width: 400px;
+        height: 470px;
+        position: relative;
+        transform-style: preserve-3d;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
     }
-    to {
-        transform: translateX(-50px);
-        opacity: 0;
+
+    /* Individual Pages */
+    .page {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform-origin: left;
+        transition: transform 1s ease-in-out;
     }
-}
 
-.slide-out {
-    animation: slideOut 0.4s ease-in;
-}
-
-/* Reverse Slide-out for Going Back */
-@keyframes slideOutReverse {
-    from {
-        transform: translateX(0);
-        opacity: 1;
+    /* Page Images */
+    .page img {
+        width: 90%;
+        height: 90%;
+        border-radius: 5px;
     }
-    to {
-        transform: translateX(50px);
-        opacity: 0;
+
+    /* Flip Animation */
+    .flipped {
+        transform: rotateY(-180deg) scale(0.98);
+        transition: transform 0.7s ease-in-out;
+        z-index: 1;
     }
-}
 
-.slide-out-reverse {
-    animation: slideOutReverse 0.4s ease-in;
-}
-
-/* Bouncing Animation for Album */
-@keyframes bounceBook {
-    0% {
-        transform: translateY(0);
+    .visible {
+        z-index: 2;
     }
-    100% {
-        transform: translateY(-10px);
+
+    /* Slide-in Effect for New Page */
+    @keyframes slideIn {
+        from {
+            transform: translateX(50px);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
     }
-}
 
-/* Navigation Buttons */
-button {
-    margin: 10px;
-    padding: 12px 25px;
-    border: none;
-    background-color: #8b5e3b;
-    color: white;
-    font-size: 18px;
-    cursor: pointer;
-    border-radius: 30px;
-    transition: background 0.3s, transform 0.2s ease;
-    display: inline-flex;
-    align-items: flex-end;
-    justify-content: center;
-    font-weight: bold;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    animation: bounceButton 1.2s infinite alternate ease-in-out;
-}
-
-/* Button Hover Effect */
-button:hover {
-    background-color: #5a3b1e;
-    transform: scale(1.05) translateY(-50%);
-}
-
-/* Disabled Button Style */
-button:disabled {
-    background-color: #b7a58d;
-    cursor: not-allowed;
-    transform: none;
-}
-
-/* Icon Spacing */
-button i {
-    margin-right: 5px;
-}
-
-button:focus {
-    outline: none;
-}
-
-/* Bouncing Animation for Buttons */
-@keyframes bounceButton {
-    0% {
-        transform: translateY(-50%) scale(1);
+    .slide-in {
+        animation: slideIn 0.4s ease-out;
     }
-    100% {
-        transform: translateY(-55%) scale(1.05);
+
+    /* Slide-out Effect */
+    @keyframes slideOut {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(-50px);
+            opacity: 0;
+        }
     }
-}
 
-/* Position the Next button on the right */
-#next {
-    right: 350px;
-}
+    .slide-out {
+        animation: slideOut 0.4s ease-in;
+    }
 
-/* Position the Previous button on the left */
-#prev {
-    left: 350px;
+    /* Reverse Slide-out for Going Back */
+    @keyframes slideOutReverse {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(50px);
+            opacity: 0;
+        }
+    }
+
+    .slide-out-reverse {
+        animation: slideOutReverse 0.4s ease-in;
+    }
+
+    /* Bouncing Animation for Album */
+    @keyframes bounceBook {
+        0% {
+            transform: translateY(0);
+        }
+        100% {
+            transform: translateY(-10px);
+        }
+    }
+
+    /* Navigation Buttons */
+    button {
+        margin: 10px;
+        padding: 12px 25px;
+        border: none;
+        background-color: #8b5e3b;
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
+        border-radius: 30px;
+        transition: background 0.3s, transform 0.2s ease;
+        display: inline-flex;
+        align-items: flex-end;
+        justify-content: center;
+        font-weight: bold;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        animation: bounceButton 1.2s infinite alternate ease-in-out;
+    }
+
+    /* Button Hover Effect */
+    button:hover {
+        background-color: #5a3b1e;
+        transform: scale(1.05) translateY(-50%);
+    }
+
+    /* Disabled Button Style */
+    button:disabled {
+        background-color: #b7a58d;
+        cursor: not-allowed;
+        transform: none;
+    }
+
+    /* Icon Spacing */
+    button i {
+        margin-right: 5px;
+    }
+
+    button:focus {
+        outline: none;
+    }
+
+    /* Bouncing Animation for Buttons */
+    @keyframes bounceButton {
+        0% {
+            transform: translateY(-50%) scale(1);
+        }
+        100% {
+            transform: translateY(-55%) scale(1.05);
+        }
+    }
+
+    /* Position the Next button on the right */
+    #next {
+        right: 350px;
+    }
+
+    /* Position the Previous button on the left */
+    #prev {
+        left: 350px;
+    }
+
+    #play-music {
+        position: relative;
+        bottom: 20px;
+        left: 20px;
+        background-color: #d63384;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        display: none;
+    }
+    
+    /* Responsive Adjustments */
+@media (max-width: 768px) {
+    /* Adjust book size */
+    .book {
+        width: 90vw;
+        height: 80vh;
+    }
+
+    /* Ensure images fit well */
+    .page img {
+        width: 95%;
+        height: auto;
+    }
+
+    /* Resize and reposition navigation buttons */
+    button {
+        padding: 10px 20px;
+        font-size: 14px;
+        position: fixed;
+        top: auto;
+        bottom: 20px;
+        transform: none;
+    }
+
+    /* Position the buttons below the book */
+    #prev {
+        left: 15%;
+    }
+
+    #next {
+        right: 15%;
+    }
+
+    /* Play music button */
+    #play-music {
+        bottom: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
 }

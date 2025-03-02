@@ -26,18 +26,19 @@ p {
     color: #000000;
     font-size: 1.2em;
     line-height: 2;
-    padding: 3px;
+    padding: 15px;
     border: 4px solid #e0adc6;
     border-radius: 15px;
-    background-color: #eee1e7; 
-    animation: bounceIn 1.5s ease-in-out;
+    background-color: #eee1e7;
     transition: transform 0.3s ease-in-out;
+    white-space: pre-wrap; /* Preserve spaces and line breaks */
+    overflow: hidden;
 }
 
-/* Hover effect for p */
+/* Hover effect */
 p:hover {
-    transform: scale(1.05); /* Slightly enlarges on hover */
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
+    transform: scale(1.05);
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 @keyframes bounceIn {
@@ -101,4 +102,52 @@ img:hover {
 
 #scroll-btn {
     animation: glow 1.5s infinite alternate;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2em; /* Reduce font size */
+    }
+
+    .container {
+        flex-direction: column; /* Stack elements vertically */
+        gap: 30px; /* Reduce gap */
+        padding: 15px;
+    }
+
+    p {
+        max-width: 90%; /* Make text take up more space */
+        font-size: 1em; /* Reduce font size */
+        padding: 12px;
+    }
+
+    img {
+        width: 280px; /* Reduce image size for mobile */
+    }
+
+    #scroll-btn {
+        font-size: 1em;
+        padding: 12px 25px;
+    }
+}
+
+/* Extra small devices (phones below 480px) */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8em;
+    }
+
+    p {
+        font-size: 0.9em;
+        padding: 10px;
+    }
+
+    img {
+        width: 250px;
+    }
+
+    #scroll-btn {
+        font-size: 0.9em;
+        padding: 10px 20px;
+    }
 }

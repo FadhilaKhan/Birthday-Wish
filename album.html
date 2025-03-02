@@ -3,14 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photo Album Flipbook</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Memories</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* General Page Styling */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0e6dc;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        /* Flipbook Container */
+        .book-container {
+            perspective: 1800px;
+            position: relative;
+            animation: bounceBook 1.5s infinite alternate ease-in-out;
+        }
+
+        /* Flipbook */
+        .book {
+            width: 400px;
+            height: 470px;
+            position: relative;
+            transform-style: preserve-3d;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Individual Pages */
+        .page {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform-origin: left;
+            transition: transform 1s ease-in-out;
+        }
+
+        /* Page Images */
+        .page img {
+            width: 90%;
+            height: 90%;
+            border-radius: 5px;
+        }
+
+        /* Flip Animation */
+        .flipped {
+            transform: rotateY(-180deg) scale(0.98);
+            transition: transform 0.7s ease-in-out;
+            z-index: 1;
+        }
+
+        .visible {
+            z-index: 2;
+        }
+
+        /* Navigation Buttons */
+        button {
+            margin: 10px;
+            padding: 12px 25px;
+            border: none;
+            background-color: #8b5e3b;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: background 0.3s, transform 0.2s ease;
+            display: inline-flex;
+            align-items: flex-end;
+            justify-content: center;
+            font-weight: bold;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* Button Hover Effect */
+        button:hover {
+            background-color: #5a3b1e;
+            transform: scale(1.05) translateY(-50%);
+        }
+
+        /* Position the Next button on the right */
+        #next {
+            right: 350px;
+        }
+
+        /* Position the Previous button on the left */
+        #prev {
+            left: 350px;
+        }
+
+        #play-music {
+            position: relative;
+            bottom: 20px;
+            left: 20px;
+            background-color: #d63384;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            display: none;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .book {
+                width: 90vw;
+                height: 80vh;
+            }
+
+            .page img {
+                width: 95%;
+                height: auto;
+            }
+
+            /* Resize and reposition navigation buttons */
+            button {
+                padding: 10px 20px;
+                font-size: 14px;
+                position: fixed;
+                top: auto;
+                bottom: 20px;
+                transform: none;
+            }
+
+            /* Position buttons below */
+            #prev {
+                left: 15%;
+            }
+
+            #next {
+                right: 15%;
+            }
+
+            #play-music {
+                bottom: 50px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+    </style>
 </head>
 <body>
+
     <div class="book-container">
         <div class="book">
-        <div class="page" id="page1"><img src="images\frontimage.jpg" alt="Photo 1"></div>
+            <div class="page" id="page1"><img src="images\frontimage.jpg" alt="Photo 1"></div>
         <div class="page" id="page1"><img src="images\Sharmila4.png" alt="Photo 1"></div>
         <div class="page" id="page2"><img src="images\Sharmila3.jpg" alt="Photo 2"></div>
         <div class="page" id="page3"><img src="images\Sharmila8.jpg" alt="Photo 3"></div>
@@ -25,11 +176,83 @@
         <div class="page" id="page12"><img src="images\Sharmila25.jpg" alt="Photo 12"></div>
         <div class="page" id="page13"><img src="images\Sharmila18.jpg" alt="Photo 13"></div>
         <div class="page" id="page14"><img src="images\Sharmila17.jpg" alt="Photo 14"></div>
-        <div class="page" id="page15"><img src="images\Sharmila28.jpg" alt="Photo 15"></div>        
+        <div class="page" id="page15"><img src="images\Sharmila28.jpg" alt="Photo 15"></div> 
         </div>
     </div>
+
     <button id="prev"><i class="fas fa-arrow-left"></i></button>
     <button id="next"><i class="fas fa-arrow-right"></i></button>
-        <script src="script.js"></script>
+
+    <audio id="background-music" loop>
+        <source src="audio/audio1.mp3" type="audio/mp3">
+    </audio>
+
+    <div class="play-music">
+        <button id="play-music">🔊 Play Music</button>
+    </div>
+
+    <script>
+        let currentPage = 0;
+        const pages = document.querySelectorAll(".page");
+
+        function showPage(pageIndex) {
+            pages.forEach(page => page.classList.remove("visible", "flipped"));
+            pages[pageIndex].classList.add("visible");
+        }
+
+        document.getElementById("next").addEventListener("click", () => {
+            if (currentPage < pages.length - 1) {
+                pages[currentPage].classList.add("flipped");
+                currentPage++;
+                showPage(currentPage);
+            }
+        });
+
+        document.getElementById("prev").addEventListener("click", () => {
+            if (currentPage > 0) {
+                pages[currentPage].classList.remove("flipped");
+                currentPage--;
+                showPage(currentPage);
+            }
+        });
+
+        showPage(currentPage);
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const audio = document.getElementById("background-music");
+            const playButton = document.getElementById("play-music");
+
+            audio.play().catch(() => {
+                playButton.style.display = "block";
+            });
+
+            playButton.addEventListener("click", function () {
+                audio.play();
+                playButton.style.display = "none";
+            });
+        });
+
+        // Swipe Functionality
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener("touchstart", function (event) {
+            touchStartX = event.changedTouches[0].screenX;
+        });
+
+        document.addEventListener("touchend", function (event) {
+            touchEndX = event.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                document.getElementById("next").click();
+            } else if (touchEndX > touchStartX + 50) {
+                document.getElementById("prev").click();
+            }
+        }
+    </script>
+
 </body>
 </html>

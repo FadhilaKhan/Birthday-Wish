@@ -7,36 +7,16 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <h1 id="typed-text"></h1>
+    <div class="container">
+        <p id="typing-text"></p>    
+        <img src="images/Sharmila.jpg" alt="Sharmila" width="400" height="400">
+    </div>
+
     <audio id="background-audio" loop>
         <source src="audio/audio.mp3" type="audio/mp3">
     </audio>
     
-
-    <h1 id="typed-text"></h1>
-    <div class="container">
-        <p>
-            I hope you love this small gift! You are my all-time favorite 
-            <br> person, and I love you so much. 
-            You’re always in my prayers 
-            <br>
-            not because of what you do for me, but simply because I love
-            <br> you, always have and always will. Since I was a kid, my love 
-            <br>
-            for you has never changed, and it never will.
-            Thank you for everything you do for me! To make your day even more special, 
-            <br>
-            I wanted to do something 
-            different for your birthday. 
-            <br>And guess what? 
-            <br>
-            There are more surprises waiting for you! 😍🎁✨
-            <br>
-            Wishing you all the happiness in the world! 💖
-            
-        </p>    
-        <img src="images/Sharmila.jpg" alt="Sharmila" width="400" height="400">
-        
-    </div>
     <button id="scroll-btn">See More Surprises 🎁</button>
 
     <script>
@@ -59,6 +39,66 @@
 
             typeWriter(); // Start the animation
         });
+
+        document.addEventListener("DOMContentLoaded", function () {
+    const text = `I hope you love this small gift! You are my all-time favorite 
+person, and I love you so much. You’re always in my prayers 
+not because of what you do for me, but simply because I love
+you, always have and always will. Since I was a kid, my love 
+for you has never changed, and it never will.Thank you for 
+everything you do for me! To make your day even more special, 
+I wanted to do something different for your birthday. 
+And guess what? There are more surprises waiting for you! 😍🎁✨
+Wishing you all the happiness in the world! 💖`;
+
+    let index = 0;
+    const typingSpeed = 50; // Speed of typing effect
+    const paragraph = document.getElementById("typing-text");
+
+    function type() {
+        if (index < text.length) {
+            paragraph.innerHTML += text.charAt(index);
+            index++;
+            setTimeout(type, typingSpeed);
+        }
+    }
+
+    type(); // Start the typing animation
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const audio = document.getElementById("background-audio");
+
+    // Try to play automatically
+    audio.play().catch(() => {
+        console.log("Autoplay blocked! Showing play button...");
+        showPlayButton();
+    });
+
+    function showPlayButton() {
+        let button = document.createElement("button");
+        button.innerText = "🔊 Play Music";
+        button.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: #d63384;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        `;
+        button.onclick = function () {
+            audio.play();
+            button.remove(); // Remove button after playing
+        };
+        document.body.appendChild(button);
+    }
+});
+
     </script>
 </body>
 </html>

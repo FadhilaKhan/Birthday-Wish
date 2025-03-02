@@ -40,3 +40,20 @@ document.getElementById("prev").addEventListener("click", () => {
 
 // Initial page setup
 showPage(currentPage);
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const audio = document.getElementById("background-music");
+    const playButton = document.getElementById("play-music");
+
+    // Try to autoplay
+    audio.play().catch(() => {
+        console.log("Autoplay blocked. Click to play music.");
+        playButton.style.display = "block"; // Show play button
+    });
+
+    playButton.addEventListener("click", function () {
+        audio.play();
+        playButton.style.display = "none"; // Hide play button after playing
+    });
+});
